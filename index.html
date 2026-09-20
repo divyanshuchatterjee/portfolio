@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -281,38 +283,6 @@
             border: 1px solid rgba(109, 179, 63, 0.3);
         }
 
-        /* Architecture Dynamic Interactive Demo */
-        .interactive-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .pipeline {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .pipeline-node {
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            padding: 1rem 1.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .pipeline-node.active, .pipeline-node:hover {
-            border-color: var(--spring-green);
-            box-shadow: 0 0 15px rgba(109, 179, 63, 0.4);
-        }
-
         /* Footer */
         footer {
             border-top: 1px solid var(--border);
@@ -343,7 +313,6 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#architecture">Architecture Demo</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -460,27 +429,6 @@
         </div>
     </section>
 
-    <section class="sections" id="architecture">
-        <h2 class="section-title"><i class="fa-solid fa-network-wired" style="color: var(--spring-green);"></i> Interactive Architecture Flow</h2>
-        <div class="interactive-section">
-            <p>Click through nodes to simulate the <strong>FHIR Validation & Processing Pipeline</strong></p>
-            
-            <div class="pipeline">
-                <div class="pipeline-node active" onclick="showStep(1, this)">1. Ingestion (AWS Lambda)</div>
-                <div class="pipeline-node" onclick="showStep(2, this)">2. Traversal Engine</div>
-                <div class="pipeline-node" onclick="showStep(3, this)">3. Reference Verifier</div>
-                <div class="pipeline-node" onclick="showStep(4, this)">4. Outcome Generator</div>
-            </div>
-
-            <div style="margin-top: 2rem; text-align: left; background: var(--code-bg); padding: 1.5rem; border-radius: 6px; border: 1px solid var(--border);" id="architecture-details">
-                <h4 style="color: var(--spring-green);" id="arch-title">1. Secure Ingestion Layer</h4>
-                <p style="color: var(--text-muted); margin-top: 0.5rem;" id="arch-desc">
-                    Payloads are ingested low-latency using AWS Lambda endpoints, validating payload integrity before routing to internal Spring WebFlux event flows.
-                </p>
-            </div>
-        </div>
-    </section>
-
     <section class="sections" id="contact" style="text-align: center;">
         <h2 class="section-title" style="justify-content: center;"><i class="fa-solid fa-paper-plane" style="color: var(--spring-green);"></i> Get In Touch</h2>
         <p style="color: var(--text-muted); margin-bottom: 2rem;">Interested in collaborating or discussing high-performance Java backend infrastructure?</p>
@@ -493,36 +441,43 @@
     <footer>
         <p>&copy; 2026 Divyanshu Chatterjee. Engineered with HTML5/CSS3/Vanilla JS.</p>
     </footer>
-
-    <script>
-        function showStep(step, element) {
-            // Update active state
-            document.querySelectorAll('.pipeline-node').forEach(node => node.classList.remove('active'));
-            element.classList.add('active');
-
-            // Update contents dynamically
-            const title = document.getElementById('arch-title');
-            const desc = document.getElementById('arch-desc');
-
-            switch(step) {
-                case 1:
-                    title.innerText = "1. Secure Ingestion Layer";
-                    desc.innerText = "Payloads are ingested low-latency using AWS Lambda endpoints, validating payload integrity before routing to internal Spring WebFlux event flows.";
-                    break;
-                case 2:
-                    title.innerText = "2. Non-Recursive JSON Traversal Engine";
-                    desc.innerText = "Processes large, deeply-nested FHIR bundles high-speed without suffering from stack-overflow limits common in recursive parsing.";
-                    break;
-                case 3:
-                    title.innerText = "3. FullUrl & Reference Verification";
-                    desc.innerText = "Tracks references (fullUrl, URNs) across complex bundles, catching inconsistent resource declarations dynamically.";
-                    break;
-                case 4:
-                    title.innerText = "4. Interoperable Outcome Generation";
-                    desc.innerText = "Converts validation discrepancies into FHIR-compliant OperationOutcome responses, returning standardized diagnostic results to client systems.";
-                    break;
-            }
-        }
-    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 </html>
