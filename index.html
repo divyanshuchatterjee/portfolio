@@ -1,483 +1,866 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divyanshu Chatterjee | Senior Java Backend Engineer</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --primary: #68217a; /* Spring Purple Accent */
-            --spring-green: #6db33f; /* Spring Framework Green */
-            --accent: #38bdf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #334155;
-            --code-bg: #020617;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Divyanshu Chatterjee — Java & Spring Boot Software Engineer portfolio." />
+  <title>Divyanshu Chatterjee | Java & Spring Boot Engineer</title>
+  <style>
+:root {
+  --bg: #0b0d10;
+  --surface: #11151a;
+  --surface-2: #171c22;
+  --text: #eef1f4;
+  --muted: #9ca6b2;
+  --line: #29313a;
+  --accent: #8cc8ff;
+  --accent-2: #b6e2ff;
+  --max: 1120px;
+  --radius: 14px;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+.container { width: min(var(--max), calc(100% - 40px)); margin: auto; }
+.narrow { max-width: 900px; }
+.section { padding: 105px 0; }
+.alt { background: #0f1216; border-block: 1px solid #171c22; }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(11,13,16,.9); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav-wrap { min-height: 68px; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-size: 22px; font-weight: 800; letter-spacing: -.04em; }
+.brand span { color: var(--accent); }
+nav { display: flex; gap: 26px; }
+nav a { color: var(--muted); font-size: 14px; }
+nav a:hover { color: var(--text); }
+.menu-btn { display: none; background: none; border: 0; color: var(--text); font-size: 22px; }
 
-        /* Terminal Font for Code Blocks */
-        code, pre, .terminal-text {
-            font-family: 'Fira Code', monospace;
-        }
+.hero { padding: 68px 0 82px; min-height: auto; display: grid; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 75px; align-items: center; }
+.eyebrow { color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .16em; margin: 0 0 18px; }
+h1 { font-size: clamp(58px, 8vw, 100px); line-height: .93; letter-spacing: -.07em; margin: 0; }
+h1 span, h2 span { color: var(--accent); }
+.hero-title { font-size: 21px; font-weight: 650; margin: 28px 0 10px; }
+.hero-copy { color: var(--muted); max-width: 620px; font-size: 17px; }
+.hero-actions, .contact-actions { display: flex; gap: 12px; margin: 30px 0; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 0 18px; border-radius: 8px;
+  border: 1px solid var(--line); cursor: pointer; transition: .2s ease;
+}
+.btn.primary { background: var(--text); color: #101318; border-color: var(--text); }
+.btn.primary:hover { transform: translateY(-2px); }
+.btn.secondary { background: transparent; color: var(--text); }
+.btn.secondary:hover { border-color: #65717e; }
 
-        /* Navbar */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.quick-stats { display: flex; gap: 32px; margin-top: 45px; }
+.quick-stats div { display: grid; gap: 2px; }
+.quick-stats strong { font-size: 22px; }
+.quick-stats span { color: var(--muted); font-size: 12px; }
 
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--spring-green);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.hero-card {
+  border: 1px solid var(--line); background: var(--surface);
+  border-radius: var(--radius); overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.25);
+}
+.terminal-top { height: 38px; display: flex; gap: 7px; align-items: center; padding: 0 14px; border-bottom: 1px solid var(--line); }
+.terminal-top span { width: 8px; height: 8px; border-radius: 50%; background: #505a65; }
+pre { margin: 0; padding: 30px; overflow: auto; font: 13px/1.9 "SFMono-Regular", Consolas, monospace; color: #d7dde3; }
+.key { color: #b6e2ff; }
+.str { color: #c8dca5; }
+.muted { color: #66717d; }
+.ann { color: #d8a7ff; }
+.kw { color: #8cc8ff; }
+.type { color: #c8dca5; }
+.method { color: #b6e2ff; }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+.availability { border-top: 1px solid var(--line); padding: 13px 20px; color: var(--muted); font-size: 12px; }
+.availability i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #8cc8ff; margin-right: 8px; }
 
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+h2 { font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -.05em; margin: 0 0 25px; }
+.lead { font-size: 19px; color: var(--muted); max-width: 820px; }
+.about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 55px; border: 1px solid var(--line); background: var(--line); }
+.about-grid article { background: var(--surface); padding: 28px; }
+.about-grid h3, .achievement-grid h3 { margin-top: 0; }
+.about-grid p, .achievement-grid p { color: var(--muted); margin-bottom: 0; }
 
-        nav a:hover {
-            color: var(--spring-green);
-        }
+.section-heading, .skills-header { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 45px; }
+.section-heading p, .skills-header p { color: var(--muted); }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            padding: 8rem 2rem 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: center;
-        }
+.experience-shell { display: grid; grid-template-columns: 190px 1fr; border: 1px solid var(--line); background: var(--surface); }
+.company-tabs { border-right: 1px solid var(--line); padding: 14px; }
+.company-tab {
+  display: block; width: 100%; text-align: left; padding: 15px;
+  color: var(--muted); background: none; border: 0; border-left: 2px solid transparent; cursor: pointer;
+}
+.company-tab.active { color: var(--text); background: var(--surface-2); border-left-color: var(--accent); }
+.experience-panel { display: none; padding: 40px; }
+.experience-panel.active { display: block; animation: fade .25s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.role-head { display: flex; justify-content: space-between; gap: 25px; border-bottom: 1px solid var(--line); padding-bottom: 25px; margin-bottom: 30px; }
+.role-head h3 { margin: 0 0 5px; font-size: 25px; }
+.company, .date { color: var(--muted); margin: 0; }
+.date { white-space: nowrap; font-size: 13px; }
+.work-block { padding: 5px 0 28px; }
+.work-block h4 { font-size: 18px; margin-bottom: 8px; }
+.work-block p { color: var(--muted); }
+.work-block ul { color: #c5ccd3; padding-left: 20px; }
+.work-block li { margin: 8px 0; }
+code { background: #080a0c; border: 1px solid var(--line); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: .9em; }
+.tech-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+.tech-row span, .tag, .code-pill {
+  border: 1px solid var(--line); color: var(--muted); border-radius: 5px;
+  padding: 4px 8px; font-size: 11px; background: rgba(255,255,255,.02);
+}
+.tag { display: inline-block; border: 0; padding: 0; color: var(--accent); letter-spacing: .1em; font-weight: 800; background: none; }
 
-        .hero-text h1 {
-            font-size: 2.8rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
+.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.project-card {
+  position: relative; overflow: hidden; min-height: 330px;
+  border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); padding: 30px;
+  transition: transform .2s, border-color .2s;
+}
+.project-card:hover { transform: translateY(-4px); border-color: #49535e; }
+.project-card.featured { grid-column: span 2; min-height: 290px; }
+.project-number { color: #56616c; font: 12px monospace; margin-bottom: 25px; }
+.project-card h3 { font-size: 25px; margin: 10px 0; }
+.project-card p:not(.tag) { color: var(--muted); max-width: 650px; }
+.details-btn { color: var(--accent); border: 0; background: none; padding: 0; cursor: pointer; margin-top: 8px; }
+.mini-flow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 30px; color: var(--muted); font-size: 12px; }
+.mini-flow span { border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; }
+.mini-flow b { color: var(--accent); }
+.mini-flow.vertical { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; width: 100%; }
+.code-pill { display: inline-block; margin-top: 25px; font-family: monospace; color: #c7d7e5; }
 
-        .hero-text h1 span {
-            color: var(--spring-green);
-        }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter { background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 5px; padding: 7px 11px; cursor: pointer; font-size: 12px; }
+.filter.active, .filter:hover { color: var(--text); border-color: #687480; }
+.skill-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
+.skill { background: var(--surface); border: 1px solid var(--line); padding: 17px; border-radius: 7px; font-weight: 650; }
+.skill small { display: block; color: var(--muted); font-weight: 400; margin-top: 3px; }
+.skill.hidden { display: none; }
 
-        .hero-text p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 1.2rem;
-        }
+.achievement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.achievement-grid article { border: 1px solid var(--line); background: var(--surface); padding: 28px; border-radius: var(--radius); }
+.achievement-icon { color: var(--accent); font-size: 25px; }
+.certifications { margin-top: 60px; border-top: 1px solid var(--line); padding-top: 30px; }
+.cert-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.cert-list span { border: 1px solid var(--line); padding: 9px 12px; border-radius: 6px; color: var(--muted); font-size: 13px; }
 
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            background: var(--spring-green);
-            color: #000;
-            font-weight: 600;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
+.contact { text-align: center; }
+.contact-inner { max-width: 760px; }
+.contact h2 { margin-bottom: 15px; }
+.contact p:not(.eyebrow) { color: var(--muted); }
+.contact-actions { justify-content: center; }
+.linkedin-handle { font-family: monospace; font-size: 12px; color: #65717d !important; }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px var(--spring-green);
-        }
+footer { border-top: 1px solid var(--line); padding: 22px 0; color: #6f7984; font-size: 12px; }
+.footer-inner { display: flex; justify-content: space-between; gap: 20px; }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            margin-left: 1rem;
-        }
+.modal { display: none; position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.72); padding: 20px; align-items: center; justify-content: center; }
+.modal.open { display: flex; }
+.modal-card { width: min(850px, 100%); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 38px; position: relative; }
+.modal-close { position: absolute; right: 18px; top: 13px; background: none; color: var(--muted); border: 0; font-size: 30px; cursor: pointer; }
+.modal-card h3 { font-size: 30px; margin: 0 0 28px; }
+.architecture { display: flex; gap: 8px; align-items: stretch; flex-wrap: nowrap; width: 100%; }
+.architecture > div { border: 1px solid #3a4652; background: #0d1014; padding: 14px 10px; border-radius: 7px; flex: 1 1 0; min-width: 0; text-align: center; font-weight: 650; font-size: 15px; overflow-wrap: anywhere; }
+.architecture i { color: var(--accent); font-style: normal; flex: 0 0 auto; align-self: center; }
+.architecture small { color: var(--muted); font-weight: 400; }
+.modal-note { color: var(--muted); margin-top: 28px; }
 
-        .btn-outline:hover {
-            border-color: var(--spring-green);
-            color: var(--spring-green);
-        }
+@media (max-width: 850px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 45px; }
+  .hero { min-height: auto; padding-top: 55px; }
+  .about-grid, .achievement-grid { grid-template-columns: 1fr; }
+  .experience-shell { grid-template-columns: 1fr; }
+  .company-tabs { border-right: 0; border-bottom: 1px solid var(--line); display: flex; }
+  .company-tab { border-left: 0; border-bottom: 2px solid transparent; }
+  .company-tab.active { border-bottom-color: var(--accent); border-left: 0; }
+  .skill-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 650px) {
+  .container { width: min(100% - 28px, var(--max)); }
+  .section { padding: 75px 0; }
+  nav { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 20px; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; gap: 15px; }
+  nav.open { display: flex; }
+  .menu-btn { display: block; }
+  .hero-actions, .contact-actions { flex-direction: column; }
+  .quick-stats { gap: 17px; flex-wrap: wrap; }
+  .project-grid { grid-template-columns: 1fr; }
+  .project-card.featured { grid-column: span 1; }
+  .section-heading, .skills-header, .role-head { display: block; }
+  .date { margin-top: 8px; }
+  .filters { margin-top: 20px; }
+  .skill-grid { grid-template-columns: 1fr; }
+  .experience-panel { padding: 25px 20px; }
+  .footer-inner { flex-direction: column; }
+  .architecture { display: grid; }
+  .architecture i { display: none; }
+  .architecture > div { width: 100%; }
+}
 
-        /* Interactive Terminal Card */
-        .terminal-card {
-            background: var(--code-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-        }
 
-        .terminal-header {
-            background: #1e293b;
-            padding: 0.5rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.case-study-modal { max-height: 88vh; overflow-y: auto; }
+.case-study-modal::-webkit-scrollbar { width: 7px; }
+.case-study-modal::-webkit-scrollbar-thumb { background: #3a4652; border-radius: 10px; }
+.modal-intro { color: var(--muted); font-size: 16px; max-width: 900px; margin: -10px 0 25px; }
+.case-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 20px 0 30px; }
+.case-metrics > div { border: 1px solid var(--line); background: #0d1014; padding: 14px; border-radius: 7px; }
+.case-metrics strong { display: block; color: var(--text); font-size: 14px; }
+.case-metrics span { color: var(--muted); font-size: 11px; }
+.case-section { margin-top: 28px; }
+.case-section h4 { font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 0 0 14px; }
+.case-section p { color: var(--muted); margin: 0; }
+.case-section ul { color: #c5ccd3; padding-left: 20px; margin: 0; }
+.case-section li { margin: 7px 0; }
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.decision-list { display: grid; gap: 8px; }
+.decision-list > div { border: 1px solid var(--line); background: #0d1014; border-radius: 7px; padding: 13px 15px; }
+.decision-list b { display: block; color: var(--text); font-size: 13px; margin-bottom: 3px; }
+.decision-list span { color: var(--muted); font-size: 13px; }
+.detailed-flow > div { display: flex; flex-direction: column; gap: 4px; }
+.detailed-flow > div b { font-size: 14px; }
+.detailed-flow > div small { font-size: 10px; color: var(--muted); font-weight: 400; }
+.large-tags span { font-size: 11px; }
+.case-highlight { margin-top: 28px; border-left: 2px solid var(--accent); background: rgba(140,200,255,.04); padding: 13px 15px; color: var(--muted); font-size: 12px; }
+.case-highlight strong { color: var(--text); }
+.job-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.job-flow > div { border: 1px solid var(--line); background: #0d1014; padding: 15px; border-radius: 7px; }
+.job-flow span { display: inline-flex; width: 23px; height: 23px; align-items: center; justify-content: center; border-radius: 50%; background: var(--accent); color: #0b0d10; font-weight: 800; font-size: 11px; margin-bottom: 10px; }
+.job-flow b { display: block; font-size: 12px; margin-bottom: 5px; }
+.job-flow small { color: var(--muted); font-size: 11px; line-height: 1.5; }
 
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
+@media (max-width: 850px) {
+  .case-metrics { grid-template-columns: repeat(2, 1fr); }
+  .case-grid { grid-template-columns: 1fr; gap: 0; }
+  .job-flow { grid-template-columns: 1fr; }
+}
+@media (max-width: 650px) {
+  .case-metrics { grid-template-columns: 1fr 1fr; }
+  .case-study-modal { max-height: 92vh; padding: 25px 20px; }
+}
 
-        .dot-red { background: #ef4444; }
-        .dot-yellow { background: #f59e0b; }
-        .dot-green { background: #10b981; }
 
-        .terminal-body {
-            padding: 1.5rem;
-            color: #a7f3d0;
-            font-size: 0.9rem;
-        }
+.linkedin-btn { gap: 9px; }
+.linkedin-icon { width: 17px; height: 17px; fill: currentColor; flex: 0 0 auto; }
 
-        /* Metrics / Skills Matrix */
-        .sections {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--spring-green);
-        }
-
-        .skill-card i {
-            font-size: 2rem;
-            color: var(--spring-green);
-            margin-bottom: 1rem;
-        }
-
-        .skill-card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            position: relative;
-            border-left: 2px solid var(--border);
-            padding-left: 2rem;
-            margin-left: 1rem;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.55rem;
-            top: 0;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            background: var(--spring-green);
-        }
-
-        .job-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .company-info {
-            color: var(--spring-green);
-            margin-bottom: 0.5rem;
-        }
-
-        .date {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background: rgba(109, 179, 63, 0.1);
-            color: var(--spring-green);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(109, 179, 63, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-            nav ul {
-                display: none;
-            }
-        }
-    </style>
+</style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">DC<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+      <nav id="nav">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+      </nav>
+    </div>
+  </header>
 
-    <header>
-        <div class="logo">
-            <i class="fa-brands fa-java"></i> Divyanshu.java
+  <main>
+    <section class="hero section" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">JAVA • SPRING BOOT • MICROSERVICES</p>
+          <h1>Divyanshu<br /><span>Chatterjee</span></h1>
+          <p class="hero-title">Software Engineer / Backend Developer</p>
+          <p class="hero-copy">
+            I build reliable backend systems, event-driven services and scalable APIs
+            using Java, Spring Boot, cloud services and distributed architectures.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#experience">View experience</a>
+            <a class="btn secondary" href="#projects">Explore projects</a>
+          </div>
+          <div class="quick-stats">
+            <div><strong>5+</strong><span>Years experience</span></div>
+            <div><strong>30+</strong><span>Microservices built</span></div>
+            <div><strong>75–80%</strong><span>Response-time reduction</span></div>
+          </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="hero" id="about">
-        <div class="hero-text">
-            <h1>Hi, I'm <span>Divyanshu Chatterjee</span></h1>
-            <p>I am a Senior Java Backend Engineer with nearly 6 years of experience engineering high-performance microservices, event-driven systems, and distributed cloud platforms. Currently serving as a Consultant at Deloitte, my domain focus spans healthcare and logistics—with expertise in FHIR (R4) data specifications, reactive architectures, and asynchronous messaging.</p>
-            <p>From fine-tuning high-throughput data streams to crafting resilient REST APIs, I focus on delivering clean, maintainable backend code anchored in proven system design principles.</p>
-            <div style="margin-top: 1.5rem;">
-                <a href="#experience" class="btn"><i class="fa-solid fa-code"></i> View Systems Built</a>
-                <a href="mailto:divyanshuchatterjee999@gmail.com" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Contact Me</a>
-            </div>
-        </div>
+        <div class="hero-card">
+          <div class="terminal-top"><span></span><span></span><span></span></div>
+          <pre><code><span class="muted">// backend engineer</span>
+<span class="ann">@SpringBootApplication</span>
+<span class="ann">@EnableAsync</span>
+<span class="kw">public class</span> <span class="type">DivyanshuApplication</span> {
 
-        <div class="terminal-card">
-            <div class="terminal-header">
-                <span class="dot dot-red"></span>
-                <span class="dot dot-yellow"></span>
-                <span class="dot dot-green"></span>
-                <span style="color: var(--text-muted); font-size: 0.8rem; margin-left: auto;">ApplicationContext.java</span>
-            </div>
-            <div class="terminal-body">
-<pre><code><span style="color: #f472b6;">@SpringBootApplication</span>
-<span style="color: #60a5fa;">public class</span> <span style="color: #facc15;">DeveloperApplication</span> {
+  <span class="kw">public static void</span> <span class="method">main</span>(String[] args) {
+    SpringApplication.<span class="method">run</span>(
+      DivyanshuApplication.<span class="kw">class</span>, args);
+  }
+}
 
-    <span style="color: #60a5fa;">public static void</span> main(String[] args) {
-        SpringApplication.run(DeveloperApplication.class);
-        
-        System.out.println(<span style="color: #a7f3d0;">"Core Stack Initialized: "</span>);
-        System.out.println(<span style="color: #a7f3d0;">"- Java 21 / Spring Boot 3.5.x"</span>);
-        System.out.println(<span style="color: #a7f3d0;">"- Project Reactor & WebFlux"</span>);
-        System.out.println(<span style="color: #a7f3d0;">"- Kafka & Azure Event Hub"</span>);
-    }
+<span class="ann">@RestController</span>
+<span class="ann">@RequestMapping</span>(<span class="str">"/api"</span>)
+<span class="ann">@RequiredArgsConstructor</span>
+<span class="kw">class</span> <span class="type">BackendEngineer</span> {
+
+  <span class="ann">@GetMapping</span>(<span class="str">"/engineer"</span>)
+  <span class="kw">public</span> Engineer <span class="method">profile</span>() {
+    <span class="kw">return</span> <span class="type">Engineer</span>.<span class="method">builder</span>()
+      .name(<span class="str">"Divyanshu Chatterjee"</span>)
+      .stack(<span class="str">"Java 21 + Spring Boot"</span>)
+      .architecture(<span class="str">"Microservices"</span>)
+      .build();
+  }
 }</code></pre>
-            </div>
+          <div class="availability"><i></i> Building backend systems</div>
         </div>
+      </div>
     </section>
 
-    <section class="sections" id="skills">
-        <h2 class="section-title"><i class="fa-solid fa-layer-group" style="color: var(--spring-green);"></i> Technical Mastery</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fa-brands fa-java"></i>
-                <h3>Core Ecosystem</h3>
-                <p>Java 21, Spring Boot 3.x, Spring Security, Spring REST, Hibernate, JUnit/Mockito.</p>
-            </div>
-            <div class="skill-card">
-                <i class="fa-solid fa-bolt"></i>
-                <h3>Reactive & Async</h3>
-                <p>Spring Project Reactor, Spring WebFlux, Kafka, Azure Event Hubs (AVRO Schema).</p>
-            </div>
-            <div class="skill-card">
-                <i class="fa-solid fa-cloud"></i>
-                <h3>Cloud & Microservices</h3>
-                <p>AWS (Lambda, S3, SQS, RDS), Docker, Kubernetes, Microservices Patterns.</p>
-            </div>
-            <div class="skill-card">
-                <i class="fa-solid fa-database"></i>
-                <h3>Data Persistence</h3>
-                <p>PostgreSQL, MySQL, MongoDB, Caching strategies with EhCache.</p>
-            </div>
+    <section class="section alt" id="about">
+      <div class="container narrow">
+        <p class="eyebrow">01 / ABOUT</p>
+        <h2>Backend engineering with a focus on <span>systems that scale.</span></h2>
+        <p class="lead">
+          Software engineer with hands-on experience in FHIR-based Prior Authorization systems,
+          cloud integrations and large-scale microservice ecosystems. I enjoy solving backend
+          problems where performance, reliability and maintainability matter.
+        </p>
+        <div class="about-grid">
+          <article>
+            <h3>What I build</h3>
+            <p>REST APIs, validation engines, event-driven services, schedulers, integrations and distributed processing systems.</p>
+          </article>
+          <article>
+            <h3>How I work</h3>
+            <p>API-first design, clean architecture, design patterns, automated testing, observability and production-focused engineering.</p>
+          </article>
+          <article>
+            <h3>Domains</h3>
+            <p>Healthcare / FHIR, locomotive & container logistics, invoicing, enterprise integrations and cloud services.</p>
+          </article>
         </div>
+      </div>
     </section>
 
-    <section class="sections" id="experience">
-        <h2 class="section-title"><i class="fa-solid fa-briefcase" style="color: var(--spring-green);"></i> Experience Timeline</h2>
-        <div class="timeline">
+    <section class="section" id="experience">
+      <div class="container">
+        <p class="eyebrow">02 / EXPERIENCE</p>
+        <div class="section-heading">
+          <div>
+            <h2>Where I've worked</h2>
+            <p>Click an organization to explore the work.</p>
+          </div>
+        </div>
 
-            <!-- Deloitte -->
-            <div class="timeline-item">
-                <div class="job-title">Consultant (Java Backend)</div>
-                <div class="company-info">Deloitte | Hyderabad</div>
-                <div class="date">Dec 2024 - Present</div>
-                <ul>
-                    <li>Architected and built a commercial-ready FHIR (R4) validation engine for Prior Auth Systems using Spring-Reactive programming.</li>
-                    <li>Designed non-recursive traversal algorithms for quick JSON processing of enterprise FHIR bundles.</li>
-                    <li>Built AWS Lambda functions to interface securely with external medical services APIs.</li>
-                    <li>Configured Strategy Design Pattern transformers to process dynamic incoming data formats seamlessly.</li>
-                    <li>Designed Pub-Sub mechanisms with Azure Event Hubs, optimizing multi-AVRO schema parsing from unified sources.</li>
-                </ul>
-                <div class="tech-tags">
-                    <span class="tag">Java 21</span>
-                    <span class="tag">Spring Boot 3.5.x</span>
-                    <span class="tag">WebFlux</span>
-                    <span class="tag">AWS Lambda</span>
-                    <span class="tag">Azure Event Hub</span>
-                    <span class="tag">FHIR R4</span>
-                </div>
+        <div class="experience-shell">
+          <div class="company-tabs" role="tablist">
+            <button class="company-tab active" data-company="deloitte">Deloitte</button>
+            <button class="company-tab" data-company="accenture">Accenture</button>
+          </div>
+
+          <div class="experience-panel active" id="deloitte">
+            <div class="role-head">
+              <div>
+                <h3>Software Engineer II</h3>
+                <p class="company">Deloitte · Hyderabad</p>
+              </div>
+              <span class="date">Dec 2024 — Present</span>
             </div>
 
-            <!-- Accenture -->
-            <div class="timeline-item">
-                <div class="job-title">Application Development Analyst</div>
-                <div class="company-info">Accenture | Noida</div>
-                <div class="date">Nov 2020 - Dec 2024</div>
-                <ul>
-                    <li>Engineered 30+ microservices based on Orchestrator, Aggregator, and Domain patterns.</li>
-                    <li>Automated manually intensive container reservation processes, reducing processing overhead time from 3 days to automated instantaneous workflow.</li>
-                    <li>Implemented EhCache strategies, reducing database query load and improving overall response time by 75-80%.</li>
-                    <li>Published a leadership-acknowledged White Paper on "Next Generation Customer Service".</li>
-                </ul>
-                <div class="tech-tags">
-                    <span class="tag">Java 1.8</span>
-                    <span class="tag">Spring Boot 2.2.x</span>
-                    <span class="tag">Kafka</span>
-                    <span class="tag">PostgreSQL</span>
-                    <span class="tag">MongoDB</span>
-                    <span class="tag">EhCache</span>
-                </div>
+            <div class="work-block">
+              <h4>PAS Implementation using FHIR</h4>
+              <p>Built a commercial-ready FHIR R4 validation engine for a Prior Authorization System using Spring Reactive programming.</p>
+              <ul>
+                <li>Implemented non-recursive JSON traversal for scalable validation of complex FHIR bundles.</li>
+                <li>Extracted, tracked and validated FHIR references including fullUrl and URNs, detecting unreferenced and inconsistent resources.</li>
+                <li>Added configurable business-rule validation and converted validation failures into FHIR-compliant OperationOutcome resources.</li>
+                <li>Optimized memory and processing for large bundles and designed the service as a plug-and-play, API-first component.</li>
+                <li>Built AWS Lambda integrations for secure third-party API connectivity.</li>
+                <li>Implemented a Strategy Pattern based transformer layer for extensible payload transformation.</li>
+              </ul>
+              <div class="tech-row">
+                <span>Java 21</span><span>Spring Boot 3.5</span><span>WebFlux</span><span>FHIR R4</span><span>Reactor</span><span>AWS</span>
+              </div>
             </div>
 
+            <div class="work-block">
+              <h4>Distributed Job Processing</h4>
+              <p>Designed a Kubernetes-based scheduled processing architecture using PostgreSQL row locking.</p>
+              <ul>
+                <li>Used <code>FOR UPDATE SKIP LOCKED</code> for atomic row claiming across multiple pods.</li>
+                <li>Prevented duplicate processing while avoiding lock contention between concurrent workers.</li>
+                <li>Enabled horizontal scaling without requiring a separate distributed-locking service.</li>
+              </ul>
+              <div class="tech-row"><span>Spring Boot</span><span>Kubernetes</span><span>PostgreSQL</span><span>JDBC</span></div>
+            </div>
+
+            <div class="work-block">
+              <h4>Medical Policy Processing</h4>
+              <ul>
+                <li>Developed APIs to extract and process data from third-party systems.</li>
+                <li>Collaborated with Boomi developers to migrate Java services to an integration platform.</li>
+                <li>Implemented Pub/Sub services with Azure Event Hub and designed multi-AVRO-schema processing from a single source.</li>
+                <li>Authored an LLD to prevent event re-triggering and eliminate duplicate event data.</li>
+              </ul>
+              <div class="tech-row"><span>Java 17</span><span>Spring Boot 3</span><span>Azure Event Hub</span><span>AVRO</span><span>Apigee</span></div>
+            </div>
+          </div>
+
+          <div class="experience-panel" id="accenture">
+            <div class="role-head">
+              <div>
+                <h3>Application Development Analyst</h3>
+                <p class="company">Accenture · Noida</p>
+              </div>
+              <span class="date">Nov 2020 — Dec 2024</span>
+            </div>
+
+            <div class="work-block">
+              <h4>Locomotive & Container Domain</h4>
+              <p>Built backend services for invoice generation, locomotive tracking and container reservations.</p>
+              <ul>
+                <li>Developed 30+ microservices using Orchestrator, Aggregator and Domain service patterns.</li>
+                <li>Automated container reservation workflows that previously required around 3 days of manual work.</li>
+                <li>Digitalized invoice generation and reduced manual document creation by 30%.</li>
+                <li>Built scheduler-driven services integrating Apigee, Kafka and PostgreSQL.</li>
+                <li>Implemented MongoDB persistence with Spring Data MongoDB and CRUD workflows.</li>
+                <li>Implemented Spring Security with JWT / OAuth 2.0 authorization.</li>
+                <li>Introduced EhCache and reduced redundant database calls, improving response time by 75–80%.</li>
+                <li>Maintained >80% code coverage using JUnit and Mockito.</li>
+              </ul>
+              <div class="tech-row">
+                <span>Java 8</span><span>Spring Boot 2.2</span><span>Kafka</span><span>PostgreSQL</span><span>MongoDB</span><span>EhCache</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section class="sections" id="contact" style="text-align: center;">
-        <h2 class="section-title" style="justify-content: center;"><i class="fa-solid fa-paper-plane" style="color: var(--spring-green);"></i> Get In Touch</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Interested in collaborating or discussing high-performance Java backend infrastructure?</p>
-        <div style="display: flex; gap: 1rem; justify-content: center;">
-            <a href="mailto:divyanshuchatterjee999@gmail.com" class="btn"><i class="fa-solid fa-envelope"></i> Email Divyanshu</a>
-            <a href="https://linkedin.com/in/divyanshu-chatterjee" target="_blank" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    <section class="section alt" id="projects">
+      <div class="container">
+        <p class="eyebrow">03 / ENGINEERING HIGHLIGHTS</p>
+        <h2>Selected systems I've built</h2>
+        <div class="project-grid">
+          <article class="project-card featured">
+            <div class="project-number">01</div>
+            <div class="project-content">
+              <p class="tag">HEALTHCARE · REACTIVE</p>
+              <h3>FHIR Validation Engine</h3>
+              <p>Commercial-ready validation service for FHIR R4 Prior Authorization bundles with configurable business rules and interoperable error reporting.</p>
+              <button class="details-btn" data-modal="fhirModal">View architecture →</button>
+            </div>
+            <div class="mini-flow">
+              <span>FHIR Bundle</span><b>→</b><span>Parser</span><b>→</b><span>Validator</span><b>→</b><span>OperationOutcome</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-number">02</div>
+            <p class="tag">DISTRIBUTED PROCESSING</p>
+            <h3>Multi-Pod Job Processor</h3>
+            <p>Scheduler-based Spring Boot workers using PostgreSQL row locking to safely distribute work across Kubernetes pods.</p>
+            <button class="details-btn" data-modal="lockModal">View architecture →</button>
+            <div class="code-pill">FOR UPDATE SKIP LOCKED</div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-number">03</div>
+            <p class="tag">EVENT-DRIVEN</p>
+            <h3>AVRO Event Processor</h3>
+            <p>Azure Event Hub based Pub/Sub processing capable of handling multiple AVRO schemas from a single event source.</p>
+            <div class="mini-flow vertical"><span>Event Hub</span><span>↓</span><span>Schema Resolver</span><span>↓</span><span>Consumers</span></div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-number">04</div>
+            <p class="tag">MICROSERVICES</p>
+            <h3>Logistics Microservice Ecosystem</h3>
+            <p>30+ services for locomotive tracking, invoice generation and container reservation using distributed service patterns.</p>
+            <div class="tech-row"><span>Kafka</span><span>Apigee</span><span>Postgres</span><span>MongoDB</span></div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Divyanshu Chatterjee. Engineered with HTML5/CSS3/Vanilla JS.</p>
-    </footer>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
+    <section class="section" id="skills">
+      <div class="container">
+        <p class="eyebrow">04 / TECHNICAL SKILLS</p>
+        <div class="skills-header">
+          <div>
+            <h2>My toolkit</h2>
+            <p>Filter the stack by area.</p>
+          </div>
+          <div class="filters" id="filters">
+            <button class="filter active" data-filter="all">All</button>
+            <button class="filter" data-filter="backend">Backend</button>
+            <button class="filter" data-filter="data">Data</button>
+            <button class="filter" data-filter="cloud">Cloud / DevOps</button>
+            <button class="filter" data-filter="testing">Testing</button>
+          </div>
+        </div>
+
+        <div class="skill-grid" id="skillGrid">
+          <div class="skill backend">Java <small>Core / 8 / 17 / 21</small></div>
+          <div class="skill backend">Spring Boot <small>2.x / 3.x</small></div>
+          <div class="skill backend">Spring WebFlux <small>Reactive</small></div>
+          <div class="skill backend">Spring Security <small>JWT / OAuth 2.0</small></div>
+          <div class="skill backend">Spring REST <small>API design</small></div>
+          <div class="skill backend">Hibernate <small>ORM</small></div>
+          <div class="skill backend">Kafka <small>Event streaming</small></div>
+          <div class="skill backend">Design Patterns <small>Strategy / services</small></div>
+          <div class="skill data">PostgreSQL <small>RDS / JDBC</small></div>
+          <div class="skill data">MySQL <small>SQL</small></div>
+          <div class="skill data">MongoDB <small>Spring Data</small></div>
+          <div class="skill data">Caching <small>EhCache</small></div>
+          <div class="skill cloud">AWS Lambda <small>Serverless</small></div>
+          <div class="skill cloud">Amazon S3 / SQS <small>Cloud services</small></div>
+          <div class="skill cloud">Kubernetes <small>Container orchestration</small></div>
+          <div class="skill cloud">Azure Event Hub <small>Pub/Sub</small></div>
+          <div class="skill cloud">Docker / Podman <small>Containers</small></div>
+          <div class="skill cloud">Git / Maven <small>Build & source control</small></div>
+          <div class="skill testing">JUnit / Mockito <small>Unit testing</small></div>
+          <div class="skill testing">SonarQube <small>Code quality</small></div>
+          <div class="skill testing">Postman <small>API testing</small></div>
+          <div class="skill testing">Log4j / Splunk <small>Observability</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="achievements">
+      <div class="container">
+        <p class="eyebrow">05 / BEYOND CODE</p>
+        <div class="achievement-grid">
+          <article>
+            <span class="achievement-icon">↗</span>
+            <h3>White Paper</h3>
+            <p>Published a white paper on <strong>Next Generation Customer Service</strong>, which topped the DU and was selected by Accenture leadership.</p>
+          </article>
+          <article>
+            <span class="achievement-icon">+</span>
+            <h3>Knowledge Sharing</h3>
+            <p>Guided new joiners and associates, provided knowledge transfer and contributed to functional application documentation.</p>
+          </article>
+          <article>
+            <span class="achievement-icon">◎</span>
+            <h3>Collaboration</h3>
+            <p>Worked closely with clients, Scrum Masters and cross-functional teams across planning, development, testing and production deployments.</p>
+          </article>
+        </div>
+
+        <div class="certifications">
+          <h3>Certifications & learning</h3>
+          <div class="cert-list">
+            <span>Microsoft Power Platform Fundamentals</span>
+            <span>Introduction to Structured Query Language (SQL)</span>
+            <span>Mastering System Design: From Low-Level to High-Level Solutions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="container contact-inner">
+        <p class="eyebrow">06 / LET'S CONNECT</p>
+        <h2>Have a backend problem<br /><span>worth solving?</span></h2>
+        <p>I'm interested in backend engineering, distributed systems, Java/Spring Boot and product-focused engineering opportunities.</p>
+        <div class="contact-actions">
+          <a class="btn primary linkedin-btn" href="https://www.linkedin.com/in/divyanshu-chatterjee" target="_blank" rel="noopener noreferrer">
+            <svg class="linkedin-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.68H9.35V8.98h3.42v1.57h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.26 2.37 4.26 5.46v6.29ZM5.34 7.41a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM3.56 20.45h3.56V8.98H3.56v11.47Z"/>
+            </svg>
+            Let's Connect
+          </a>
+          <a class="btn secondary" href="#home">Back to top ↑</a>
+        </div>
+        <p class="linkedin-handle">linkedin.com/in/divyanshu-chatterjee</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Divyanshu Chatterjee</span>
+      <span>Java · Spring Boot · Distributed Systems</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="fhirModal" aria-hidden="true">
+    <div class="modal-card case-study-modal">
+      <button class="modal-close">×</button>
+
+      <p class="eyebrow">CASE STUDY · HEALTHCARE · REACTIVE</p>
+      <h3>FHIR Validation Engine</h3>
+      <p class="modal-intro">
+        A commercial-ready FHIR R4 validation service built for Prior Authorization workflows,
+        designed as a plug-and-play component that can be integrated with different healthcare systems.
+      </p>
+
+      <div class="case-metrics">
+        <div><strong>FHIR R4</strong><span>Standard</span></div>
+        <div><strong>1 GB</strong><span>Large bundles</span></div>
+        <div><strong>Reactive</strong><span>Processing model</span></div>
+        <div><strong>API-first</strong><span>Integration</span></div>
+      </div>
+
+      <div class="case-section">
+        <h4>Architecture</h4>
+        <div class="architecture detailed-flow">
+          <div><b>FHIR Bundle</b><small>JSON input</small></div><i>→</i>
+          <div><b>Traversal Engine</b><small>Non-recursive parsing</small></div><i>→</i>
+          <div><b>Reference Tracker</b><small>fullUrl / URNs</small></div><i>→</i>
+          <div><b>Rule Engine</b><small>Configurable rules</small></div><i>→</i>
+          <div><b>OperationOutcome</b><small>FHIR response</small></div>
+        </div>
+      </div>
+
+      <div class="case-grid">
+        <div class="case-section">
+          <h4>What I built</h4>
+          <ul>
+            <li>Designed a reusable validation engine around the FHIR R4 specification.</li>
+            <li>Implemented non-recursive JSON traversal to process deeply nested and large bundles efficiently.</li>
+            <li>Extracted and tracked FHIR references including <code>fullUrl</code> and URN-based references.</li>
+            <li>Detected missing, unreferenced and inconsistent resources within a bundle.</li>
+            <li>Added configurable business-rule validation such as status and active-state checks.</li>
+          </ul>
+        </div>
+
+        <div class="case-section">
+          <h4>Validation pipeline</h4>
+          <ul>
+            <li>Structural validation of incoming FHIR resources.</li>
+            <li>Resource and reference consistency checks.</li>
+            <li>Business-rule evaluation based on configurable rules.</li>
+            <li>Collected validation failures instead of failing at the first error.</li>
+            <li>Converted failures into interoperable FHIR <code>OperationOutcome</code> responses.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h4>Engineering decisions</h4>
+        <div class="decision-list">
+          <div><b>Non-recursive traversal</b><span>Avoided deep call-stack growth and improved control over memory usage while traversing complex JSON structures.</span></div>
+          <div><b>API-first design</b><span>Kept validation capabilities independent of the consuming healthcare application so the service can be integrated as a standalone component.</span></div>
+          <div><b>Reactive processing</b><span>Used Spring WebFlux and Project Reactor to support scalable request processing and efficient resource utilization.</span></div>
+          <div><b>Configurable rules</b><span>Separated business validation from core parsing logic so new healthcare workflow rules can be introduced without redesigning the engine.</span></div>
+        </div>
+      </div>
+
+      <div class="case-grid">
+        <div class="case-section">
+          <h4>Performance & scalability</h4>
+          <p>
+            The implementation was optimized for large enterprise payloads, with particular attention
+            to traversal strategy, object creation and memory consumption. The design supports large
+            FHIR bundles while keeping the validation pipeline extensible.
+          </p>
+        </div>
+        <div class="case-section">
+          <h4>Integration</h4>
+          <p>
+            Built AWS Lambda integrations for secure communication with external healthcare APIs,
+            providing scalable and low-latency connectivity to third-party services.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h4>Technology</h4>
+        <div class="tech-row large-tags">
+          <span>Java 21</span><span>Spring Boot 3.5</span><span>Spring WebFlux</span>
+          <span>Project Reactor</span><span>FHIR R4</span><span>REST APIs</span>
+          <span>AWS Lambda</span><span>Amazon S3</span><span>Amazon RDS</span>
+          <span>Mockito</span><span>Maven</span>
+        </div>
+      </div>
+
+      <div class="case-highlight">
+        <strong>Engineering focus:</strong>
+        interoperability · scalability · memory efficiency · configurable validation · API-first design
+      </div>
+    </div>
+  </div>
+      <p class="modal-note">Designed with Spring WebFlux / Project Reactor for scalable processing and API-first integration.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="lockModal" aria-hidden="true">
+    <div class="modal-card case-study-modal">
+      <button class="modal-close">×</button>
+
+      <p class="eyebrow">CASE STUDY · DISTRIBUTED PROCESSING</p>
+      <h3>Multi-Pod Job Processing</h3>
+      <p class="modal-intro">
+        A distributed scheduled-processing architecture for a Spring Boot service running across
+        multiple Kubernetes pods, designed to process database-backed jobs concurrently without duplicate work.
+      </p>
+
+      <div class="case-metrics">
+        <div><strong>Kubernetes</strong><span>Runtime</span></div>
+        <div><strong>PostgreSQL</strong><span>Job store</span></div>
+        <div><strong>Multi-pod</strong><span>Parallel workers</span></div>
+        <div><strong>Atomic</strong><span>Row claiming</span></div>
+      </div>
+
+      <div class="case-section">
+        <h4>Architecture</h4>
+        <div class="architecture detailed-flow">
+          <div><b>Scheduler</b><small>Periodic trigger</small></div><i>→</i>
+          <div><b>Pod A</b><small>Claims available rows</small></div><i>+</i>
+          <div><b>Pod B / C</b><small>Claims other rows</small></div><i>→</i>
+          <div><b>PostgreSQL</b><small>FOR UPDATE SKIP LOCKED</small></div>
+        </div>
+      </div>
+
+      <div class="case-grid">
+        <div class="case-section">
+          <h4>The problem</h4>
+          <ul>
+            <li>The service runs as multiple Spring Boot pods in Kubernetes.</li>
+            <li>Each pod wakes up on the same scheduler interval and queries the job table.</li>
+            <li>Without coordination, multiple pods could select the same pending record.</li>
+            <li>Traditional locking could make workers wait on rows already being processed.</li>
+          </ul>
+        </div>
+
+        <div class="case-section">
+          <h4>The solution</h4>
+          <ul>
+            <li>Used PostgreSQL <code>FOR UPDATE SKIP LOCKED</code> to atomically claim work.</li>
+            <li>Rows already locked by another worker are skipped instead of blocking.</li>
+            <li>Each pod receives a distinct set of available jobs.</li>
+            <li>Processing can scale horizontally by adding more Kubernetes pods.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h4>How concurrent processing works</h4>
+        <div class="job-flow">
+          <div><span>1</span><b>Scheduler fires</b><small>Multiple pods can trigger at the same time.</small></div>
+          <div><span>2</span><b>Transaction starts</b><small>Worker queries eligible pending records.</small></div>
+          <div><span>3</span><b>Rows are claimed</b><small>FOR UPDATE locks selected rows atomically.</small></div>
+          <div><span>4</span><b>Locked rows are skipped</b><small>Other pods continue with different available rows.</small></div>
+          <div><span>5</span><b>Job executes</b><small>Claimed work is processed exactly by its owning worker.</small></div>
+        </div>
+      </div>
+
+      <div class="case-grid">
+        <div class="case-section">
+          <h4>Why SKIP LOCKED?</h4>
+          <p>
+            It turns the database into a lightweight work-claiming mechanism. Workers do not need
+            to wait for rows currently owned by another pod, which reduces lock contention and keeps
+            available work moving through the system.
+          </p>
+        </div>
+        <div class="case-section">
+          <h4>Scalability</h4>
+          <p>
+            The architecture is horizontally scalable: additional Kubernetes pods can process
+            independent rows concurrently without introducing a separate distributed-lock service.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h4>Engineering considerations</h4>
+        <div class="decision-list">
+          <div><b>Atomic claiming</b><span>Database row locking ensures that work ownership is established inside the transaction.</span></div>
+          <div><b>No duplicate selection</b><span>Once a row is locked by one worker, concurrent workers skip it.</span></div>
+          <div><b>Reduced contention</b><span>Workers do not block behind already-claimed rows.</span></div>
+          <div><b>Horizontal scaling</b><span>More pods can be added to increase processing capacity as workload grows.</span></div>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h4>Technology</h4>
+        <div class="tech-row large-tags">
+          <span>Java 21</span><span>Spring Boot 3.5</span><span>Kubernetes</span>
+          <span>PostgreSQL</span><span>JDBC</span><span>Scheduled Jobs</span>
+          <span>Docker / Podman</span><span>Mockito</span><span>Maven</span>
+        </div>
+      </div>
+
+      <div class="case-highlight">
+        <strong>Engineering focus:</strong>
+        concurrency · atomic work claiming · lock contention reduction · horizontal scalability · reliability
+      </div>
+    </div>
+  </div>
+      <p class="modal-note">Each worker atomically claims available rows, preventing duplicate work while allowing multiple Kubernetes pods to process jobs concurrently.</p>
+    </div>
+  </div>
+
+  <script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+menuBtn.addEventListener("click", () => nav.classList.toggle("open"));
+nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => nav.classList.remove("open")));
+
+// Experience tabs
+document.querySelectorAll(".company-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".company-tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".experience-panel").forEach(p => p.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById(tab.dataset.company).classList.add("active");
+  });
+});
+
+// Skill filters
+document.querySelectorAll(".filter").forEach(filter => {
+  filter.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(f => f.classList.remove("active"));
+    filter.classList.add("active");
+    const category = filter.dataset.filter;
+    document.querySelectorAll(".skill").forEach(skill => {
+      skill.classList.toggle("hidden", category !== "all" && !skill.classList.contains(category));
+    });
+  });
+});
+
+// Architecture modals
+document.querySelectorAll("[data-modal]").forEach(button => {
+  button.addEventListener("click", () => {
+    const modal = document.getElementById(button.dataset.modal);
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+  });
+});
+document.querySelectorAll(".modal-close").forEach(button => {
+  button.addEventListener("click", () => {
+    const modal = button.closest(".modal");
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+  });
+});
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click", e => {
+    if (e.target === modal) {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+  });
+});
+
+
+
 </script>
 </body>
 </html>
